@@ -9,6 +9,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var toast : Toast? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,12 +24,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun notificationOnTop() = View.OnClickListener() {
-        var toast = Toast.makeText(this, getString(R.string.notification_top), Toast.LENGTH_LONG)
-        toast.setGravity(Gravity.TOP, 0 , 0)
-        toast.show()
+        toast?.cancel()
+        toast = null
+        toast = Toast.makeText(this, getString(R.string.notification_top), Toast.LENGTH_LONG)
+        (toast as Toast).setGravity(Gravity.TOP, 0 , 0)
+        (toast as Toast).show()
     }
 
     private fun notificationOnBottom() = View.OnClickListener() {
-        Toast.makeText(this, getString(R.string.notification_bottom), Toast.LENGTH_LONG).show()
+        toast?.cancel()
+        toast = null
+        toast = Toast.makeText(this, getString(R.string.notification_bottom), Toast.LENGTH_LONG)
+        (toast as Toast).show()
     }
 }
