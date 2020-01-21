@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidTutorial</string>
+    <string name="notification_bottom">Bottom notification</string>
+    <string name="notification_top">Top notification</string>
 </resources>
