@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">AndroidTutorial</string>
-    <string name="notification_bottom">Bottom notification</string>
-    <string name="notification_top">Top notification</string>
+    <string name="channel_name">Novo canal</string>
+    <string name="channel_description">Esta é um novo canal para treino</string>
 </resources>
