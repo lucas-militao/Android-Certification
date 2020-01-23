@@ -24,6 +24,8 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var diceImage: ImageView
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         rollButton.setOnClickListener{
             rollDice()
         }
+
+        diceImage = findViewById(R.id.diceImage)
     }
 
     private fun rollDice() {
@@ -48,8 +52,6 @@ class MainActivity : AppCompatActivity() {
             6 -> R.drawable.dice_6
             else -> R.drawable.empty_dice
         }
-
-        val diceImage: ImageView = findViewById(R.id.diceImage)
         diceImage.setImageResource(drawableResource)
     }
 }
