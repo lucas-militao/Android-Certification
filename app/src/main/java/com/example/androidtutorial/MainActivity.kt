@@ -12,49 +12,44 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
-    private val CHANNEL_ID = "1"
-    private var builder : Notification.Builder? = null
-
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        setupView()
+        val rollButton: Button = findViewById(R.id.rollButton)
+        rollButton.text = "Lets roll"
+        rollButton.setOnClickListener{
+            rollDice()
+        }
     }
 
-    @SuppressLint("WrongConstant")
-    private fun setupView() {
+    private fun rollDice() {
 
-        showNotificationButton.setOnClickListener(showNotification())
-    }
+        val random = Random.nextInt(6) + 1
 
-    @SuppressLint("WrongConstant")
-    @TargetApi(Build.VERSION_CODES.O)
-    private fun showNotification() = View.OnClickListener {
-
-        var notificationId = 123
-
-        var intent = Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        val drawableResource = when (random) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            6 -> R.drawable.dice_6
+            else -> R.drawable.empty_dice
         }
 
-        var pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
-
-        var notification = Notification.Builder(this)
-            .setSmallIcon(R.drawable.ic_android)
-            .setContentTitle("Minha notificacao")
-            .setContentText("Uma nova notificacao")
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-
-        var notifyMgr : NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notifyMgr.notify(notificationId, notification.build())
+        val diceImage: ImageView = findViewById(R.id.diceImage)
+        diceImage.setImageResource(drawableResource)
     }
 }

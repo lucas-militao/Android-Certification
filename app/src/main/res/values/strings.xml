@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">AndroidTutorial</string>
-    <string name="channel_name">Novo canal</string>
-    <string name="channel_description">Esta é um novo canal para treino</string>
+    <string name="roll">Roll</string>
 </resources>
