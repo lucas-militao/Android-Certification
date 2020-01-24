@@ -71,5 +71,7 @@ class MainActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     override fun handleResult(p0: Result?) {
         resultText.text = p0?.text
+        scannerView.setResultHandler(this)
+        scannerView.startCamera()
     }
 }
