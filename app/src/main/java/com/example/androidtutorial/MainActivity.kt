@@ -1,5 +1,7 @@
 package com.example.androidtutorial
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
@@ -9,32 +11,37 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var toast : Toast? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        setupView()
+        setListeners()
     }
 
-    private fun setupView() {
-        toastTopButton.setOnClickListener(notificationOnTop())
-        toastBottomButton.setOnClickListener(notificationOnBottom())
+    fun setListeners() {
+        val clickableViews: List<View> = listOf(
+            boxOneText, boxTwoText, boxThreeText, boxFourText, boxFiveText, constraintLayout
+        )
+
+        for (item in clickableViews) {
+            item.setOnClickListener{ makeColored(it) }
+        }
     }
 
-    private fun notificationOnTop() = View.OnClickListener() {
-        toast?.cancel()
-        toast = null
-        toast = Toast.makeText(this, getString(R.string.notification_top), Toast.LENGTH_LONG)
-        (toast as Toast).setGravity(Gravity.TOP, 0 , 0)
-        (toast as Toast).show()
+    @SuppressLint("ResourceAsColor")
+    private fun makeColored(view: View) {
+
+        when(view.id) {
+            R.id.boxOneText -> view.setBackgroundColor(Color.DKGRAY)
+            R.id.boxTwoText -> view.setBackgroundColor(Color.GRAY)
+
+            R.id.boxThreeText -> view.setBackgroundResource(android.R.color.holo_green_light)
+            R.id.boxFourText -> view.setBackgroundResource(android.R.color.holo_green_dark)
+            R.id.boxFiveText -> view.setBackgroundResource(android.R.color.holo_green_light)
+
+            else -> view.setBackgroundColor(Color.LTGRAY)
+        }
+
     }
 
-    private fun notificationOnBottom() = View.OnClickListener() {
-        toast?.cancel()
-        toast = null
-        toast = Toast.makeText(this, getString(R.string.notification_bottom), Toast.LENGTH_LONG)
-        (toast as Toast).show()
-    }
+
 }
