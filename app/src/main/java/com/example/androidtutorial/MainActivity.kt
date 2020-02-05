@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private var myName : MyName = MyName("Lucas Militao", "")
+    private var myName : MyName = MyName("Lucas Militao")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             if(this.nicknameEdit.text.isNullOrEmpty()) {
                 Toast.makeText(this@MainActivity, "Type a nickname to show", Toast.LENGTH_LONG).show()
             } else {
-                myName.nickname = nicknameEdit.text.toString()
+                myName!!.nickname = nicknameEdit.text.toString()
                 invalidateAll()
                 nicknameEdit.visibility = View.GONE
                 view.visibility = View.GONE
